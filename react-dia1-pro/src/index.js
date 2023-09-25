@@ -6,7 +6,7 @@ import  {Otrafuncion}  from "./components/mensajes";
 import AboutPage from "./components/aboutpage";
 import Profile from "./components/profile";
 import Perfil from "./components/perfil";
-import Galeriaimagenes from "./components/galeriaimagenes";
+import Autos from "./components/autos";
 
 
 
@@ -19,7 +19,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
     <div>
        
-         <Galeriaimagenes/>
+         <Autos/>
+         
          
     </div>
     
