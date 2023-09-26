@@ -9,13 +9,13 @@ import Blog from "./components/fragment";
 import Estilo from "./components/eventos2";
 import HoraActual from "./components/eventos3";
 import ConsumoApiUsers from "./components/consumoapi";
+import Rectanguloarea from "./components/eventos4";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
 root.render(
     <>
-        < ConsumoApiUsers
-        />
+      <Rectanguloarea/>
     </>
 )
