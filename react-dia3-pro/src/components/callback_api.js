@@ -1,4 +1,4 @@
-import React, { useEffect, useState, UseState } from "react";
+import React, { useEffect, useState } from "react";
 
 function ConsumoApiUsuarios() {
     const [datos, setDatos] = useState([]);
@@ -10,6 +10,7 @@ function ConsumoApiUsuarios() {
             })
             .catch((error) => {
                 console.error("Error al Cargar los datos", error)
+                
             });
 
     }, []);
