@@ -41,9 +41,30 @@ class Tasks extends Component {
             //Reseteo los valores
             this.setState({
                 list,
-                userInput: ""
-            })
-            console.log("Valores de la lista", list)
+                userInput: "",
+            });
+
+
+        }
+    }
+
+    deleteTask(key) {
+        const list = [...this.state.list];
+        const updateList = list.filter((item) => item.id !== key);
+        this.setState({
+            list: updateList
+        })
+    }
+
+    editTask = (index) => {
+        const todos = [...this.state.list];
+        const editedTodo = prompt('Ingrese el Nuevo valor de la Task');
+        if (editedTodo !== null && editedTodo.trim() !== '') {
+            let updateTodos = [...todos]
+            updateTodos[index].value = editedTodo
+            this.setState({
+                list: updateTodos,
+            });
 
         }
     }
@@ -70,7 +91,7 @@ class Tasks extends Component {
                             <FormControl
                                 placeholder="Agregar Tarea"
                                 size="lg"
-                                //value={this.state.userInput}
+                                value={this.state.userInput}
                                 onChange={(item) =>
                                     this.updateInput(item.target.value)
                                 }
@@ -105,6 +126,27 @@ class Tasks extends Component {
 
                                         >
                                             {item.value}
+                                            <span>
+                                                <Button
+                                                    style={{ marginRight: "10px" }}
+                                                    variant="light"
+                                                    onClick={() => this.deleteTask(item.id)}
+
+                                                >
+                                                    Eliminar
+
+                                                </Button>
+
+                                                <Button
+                                                    style={{ marginRight: "10px" }}
+                                                    variant="light"
+                                                    onClick={()=>this.editTask(index)}
+
+                                                >
+                                                    Editar
+
+                                                </Button>
+                                            </span>
                                         </ListGroup.Item>
 
                                     </div>
