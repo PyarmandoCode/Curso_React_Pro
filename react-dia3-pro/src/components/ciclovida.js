@@ -18,7 +18,7 @@ class Contador extends Component {
 
     //Se llama despues de cada actualizacion del componente
 
-    componentDidUpdate(prevProps,prevState) {
+    componentDidUpdate(prevState) {
         console.log("Valor Anterior",prevState.contador);
         console.log("Valor Actual",this.state.contador)
 
