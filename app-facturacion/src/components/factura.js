@@ -10,10 +10,40 @@ function Factura() {
         setItems([...items, nuevoItem]);
 
     }
+
+    const eliminarItem=(id) => {
+        const nuevosItems = items.filter((item)=>item.id!==id);
+        setItems(nuevosItems);
+    }
+
+    const calcularSubtotal = () => {
+        return items.reduce((total, item) => total + item.cantidad * item.precioUnitario, 0)
+
+    };
+
+    const calcularImpuestos = () => {
+        return calcularSubtotal() * 0.1;
+    }
+
+    const calcularTotal = () => {
+        return calcularSubtotal() + calcularImpuestos();
+    }
+
+    const actualizarItem = (id, campo, valor) => {
+        const nuevosItems = items.map((item) => {
+            if (item.id === id) {
+                return { ...item, [campo]: valor }
+            }
+            return item;
+        });
+        setItems(nuevosItems);
+    }
+
+
     return (
         <div>
             <h1>Factura</h1>
-            <button>Agregar Producto</button>
+            <button onClick={agregarItem}>Agregar Producto</button>
             <table>
                 <thead>
                     <tr>
@@ -31,6 +61,7 @@ function Factura() {
                                 <input
                                     type="text"
                                     value={item.nombre}
+                                    onChange={(e)=>actualizarItem(item.id,'nombre',e.target.value)}
 
                                 >
                                 </input>
@@ -40,6 +71,7 @@ function Factura() {
                                 <input
                                     type="number"
                                     value={item.cantidad}
+                                    onChange={(e)=>actualizarItem(item.id,'cantidad',parseInt(e.target.value,10))}
 
                                 >
                                 </input>
@@ -49,6 +81,7 @@ function Factura() {
                                 <input
                                     type="number"
                                     value={item.precioUnitario}
+                                    onChange={(e)=>actualizarItem(item.id,'precioUnitario',parseFloat(e.target.value,10))}
 
                                 >
                                 </input>
@@ -57,7 +90,7 @@ function Factura() {
                             <td>${item.cantidad * item.precioUnitario}</td>
 
                             <td>
-                                <button>Eliminar</button>
+                                <button onClick={()=>eliminarItem(item.id)}>Eliminar</button>
                             </td>
                         </tr>
                     )
@@ -65,9 +98,9 @@ function Factura() {
                 </tbody>
             </table>
             <div>
-                <p>Subtotal:99.99</p>
-                <p>Impuestos(10%):9.9</p>
-                <h3>Neto:999.99</h3>
+                <p>Subtotal:${calcularSubtotal()}</p>
+                <p>Impuestos(10%):${calcularImpuestos()}</p>
+                <h3>Neto:${calcularTotal()}</h3>
             </div>
         </div>
     )
