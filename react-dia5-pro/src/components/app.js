@@ -50,51 +50,59 @@ const ApiComponent = () => {
     } else if (!isLoaded) {
         return <><h2>Estamos Preparando Todo</h2></>
     } else {
-    return (
-        <div style={{ padding: 20 }}>
-            Busca tu auto
-            <div className='container'>
-                <input icon="search"
-                    placeholder='Buscar..'
-                    onChange={(e) => SearchItems(e.target.value)}
-                />
-            </div>
-            <div className="container">
-                <div className='row' style={{ padding: '2erm' }}>
-                    {searchInput.length > 1 ? (
-                        filterdResults.map((item) => {
-                            return (
-                                <Card style={{ width: '18erm' }}>
-                                    <Card.Img variant="top" src={item.imagen} alt={item.nombre}></Card.Img>
-                                    <Card.Body>
-                                        <Card.Title>Modelo:{item.nombre}</Card.Title>
-                                        <Card.Text>${new Intl.NumberFormat('es-mx').format(item.precio)}</Card.Text>
-                                        <Button variant="primary">Ver Detalle</Button>
-                                    </Card.Body>
-                                </Card>
-                            )
-                        })
-                    ) : (
-                        autos.map((item) => {
-                            return (
-                                <Card style={{ width: '18erm' }}>
-                                    <Card.Img variant="top" src={item.imagen} alt={item.nombre}></Card.Img>
-                                    <Card.Body>
-                                        <Card.Title>Modelo:{item.nombre}</Card.Title>
-                                        <Card.Text>${new Intl.NumberFormat('es-mx').format(item.precio)}</Card.Text>
-                                        <Button variant="primary">Ver Detalle</Button>
-
-                                    </Card.Body>
-                                </Card>
-                            )
-                        })
-                    )}
+        return (
+            <div style={{ padding: 20 }}>
+                Busca tu auto
+                <div className='container'>
+                    <input icon="search"
+                        placeholder='Buscar..'
+                        onChange={(e) => SearchItems(e.target.value)}
+                    />
                 </div>
+                <div className="container">
+                    <div className='row' style={{ padding: '2erm' }}>
+                        {searchInput.length > 1 ? (
+                            filterdResults.map((item) => {
+                                return (
+                                    <div className="col-md-4" key={item.auto}>
+                                        <Card style={{ width: '18erm' }}>
+                                            <Card.Img variant="top" src={item.imagen} alt={item.nombre}></Card.Img>
+                                            <Card.Body>
+                                                <Card.Title>Modelo:{item.nombre}</Card.Title>
+                                                <Card.Text>${new Intl.NumberFormat('es-mx').format(item.precio)}</Card.Text>
+                                                <Button variant="primary">Ver Detalle</Button>
+                                            </Card.Body>
+                                        </Card>
+                                    </div>
+                                )
+                            })
 
+                        ) : (
+                            autos.map((item) => {
+                                return (
+                                    <div className="col-md-4" key={item.auto}>
+                                    <Card style={{ width: '18erm' }}>
+                                        <Card.Img variant="top" src={item.imagen} alt={item.nombre}></Card.Img>
+                                        <Card.Body>
+                                            <Card.Title>Modelo:{item.nombre}</Card.Title>
+                                            <Card.Text>${new Intl.NumberFormat('es-mx').format(item.precio)}</Card.Text>
+                                            <Button variant="primary">Ver Detalle</Button>
+
+                                        </Card.Body>
+                                    </Card>
+                                    </div>
+
+                                )
+                            })
+
+                        )}
+
+                    </div>
+
+                </div>
             </div>
-        </div>
-    )
-  }
+        )
+    }
 }
 
 export default ApiComponent;
